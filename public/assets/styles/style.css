@@ -12,8 +12,8 @@
 
   --primary-text-color: #fff;
   --secondary-text-color: rgb(33 33 33);
-  --tertiary-text-color: rgb(70 70 70);
-  --quaternary-text-color: rgb(89 89 89);
+  --tertiary-text-color: rgb(70, 70, 70);
+  --quaternary-text-color: rgb(89, 89, 89);
 }
 
 * {
@@ -276,11 +276,11 @@ header {
   transition: 0.3s;
 }
 
-.gift:hover {
+/* .gift:hover {
   @media (prefers-reduced-motion: no-preference) {
     scale: 1.025;
   }
-}
+} */
 
 .save-button {
   background-color: var(--white);
@@ -355,4 +355,50 @@ footer {
 .cadeaus,
 .voor-wie {
   padding: 0;
+}
+
+.error-body {
+  background-color: #f9f2d4;
+  width: 100%;
+  height: 100vh;
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 5rem;
+    gap: 5rem;
+  }
+}
+
+.error-image {
+  display: none;
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .error-heading {
+    font-size: clamp(24px, 8vw, 40px);
+    color: #898a8d;
+  }
+
+  .error-paragraph {
+    font-size: clamp(60px, 20vw, 125px);
+    color: var(--secondary-text-color);
+    max-width: 600px;
+  }
+
+  .error-link {
+    color: var(--secondary-text-color);
+    background-color: rgba(224, 176, 0, 1);
+    padding: 0.75rem 1rem;
+    width: fit-content;
+  }
 }

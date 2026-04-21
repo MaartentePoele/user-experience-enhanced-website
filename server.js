@@ -45,7 +45,7 @@ app.get("/", async function (req, res) {
 app.get("/gifts/:tags", async function (req, res) {
   const params = {
     fields: "name,image,amount,slug,id",
-    "filter[tags][_contains]": req.params.tags,
+    // "filter[tags][_contains]": req.params.tags,
   };
 
   const productResponse = await fetch(
@@ -144,6 +144,10 @@ app.post("/", async function (request, response) {
   );
 
   response.redirect(303, request.header("Referer") || "/");
+});
+
+app.use((req, res, next) => {
+  res.status(404).render("error.liquid");
 });
 
 app.set("port", process.env.PORT || 8000);
