@@ -16,9 +16,9 @@
 
 <aside class="chatbot">
   <div class="input-container">
-    <button class="mic-button"><img class="chatbot-icon" src="/assets/images/mic-icon.svg" alt=""></button>
+    <button class="mic-button"><img class="chatbot-icon" src="/assets/images/mic-icon.svg" alt="" width="20" height="27"></button>
     <input class="chatbot-input" type="text" placeholder="Type your message...">
-    <button class="search-button"><img class="chatbot-icon" src="/assets/images/search-icon.svg" alt=""></button>
+    <button class="search-button"><img class="chatbot-icon" src="/assets/images/search-icon.svg" alt="" width="47" height="47"></button>
   </div>
 </aside>
 
@@ -35,7 +35,7 @@
           {% endif %}
         </form>
         <a href="/gift/{{ product.slug }}">
-          <img class="product-image" src="{{ product.image }}" alt="">
+          <img class="product-image" src="{{ product.image }}" alt="product image" width="422" height="422">
           <h3 class="product-name">{{ product.name }}</h3>
           <p class="product-price">€{{ product.amount }}</p>
         </a>
