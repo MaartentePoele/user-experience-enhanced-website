@@ -146,6 +146,26 @@ app.post("/", async function (request, response) {
   response.redirect(303, request.header("Referer") || "/");
 });
 
+app.post("/delete", async function (request, response) {
+  const giftIDresponse = await fetch(
+    "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1?filter[milledoni_users_id][_eq]=58&filter[milledoni_products_id][_eq]=" +
+      request.body.id,
+  );
+
+  const giftIDjson = await giftIDresponse.json();
+  const giftID = giftIDjson.data[0].id;
+
+  const deleteResponse = await fetch(
+    "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1/" +
+      giftID,
+    {
+      method: "DELETE",
+    },
+  );
+
+  response.redirect(303, request.header("Referer") || "/");
+});
+
 app.use((req, res, next) => {
   res.status(404).render("error.liquid");
 });

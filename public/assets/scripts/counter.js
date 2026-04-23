@@ -1,30 +1,27 @@
-const giftForms = document.querySelectorAll("form");
-// const newButton = document.querySelector("form button");
-
-giftForms.forEach((giftForm) => {
+const scoreForms = document.querySelectorAll("form");
+const giftCounter = document.querySelector(".wishlist-counter")
+// const formButton = document.querySelector("form button");
+// const scores = document.querySelector("#score ol");
+scoreForms.forEach((scoreForm) => {
   // Als er op de submit button wordt geklikt ...
-  giftForm.addEventListener("submit", async function (event) {
+  scoreForm.addEventListener("submit", async function (event) {
     // Voorkom de standaard submit van de browser
     // Let op: hiermee overschrijven we de default Loading state van de browser...
     event.preventDefault();
 
-    const formButton = giftForm.querySelector("button");
-
-    console.log("gift submitted")
-
     //Loading state tonen:
-    formButton.classList.add("loading");
-    // formButton.textContent = "loading...";
+    // giftCounter.classList.add("loading");
+    // giftCounter.textContent = "loading...";
 
     //formdata voorbereiden:
-    let formData = new FormData(giftForm);
+    let formData = new FormData(scoreForm);
 
     // Data fetchen:
     // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
     // Gebruik daarvoor het action en method attribuut van het formulier
     // Stuur de formulierelementen mee
-    const response = await fetch(giftForm.action, {
-      method: giftForm.method, //POST dus
+    const response = await fetch(scoreForm.action, {
+      method: scoreForm.method, //POST dus
       body: new URLSearchParams(formData), // <<< Dit moet omdat server.js anders niet met de formulier data kan werken
     });
 
@@ -39,16 +36,16 @@ giftForms.forEach((giftForm) => {
     const responseDOM = parser.parseFromString(responseData, "text/html");
 
     // Zoek in de onderwater DOM de nieuwe state op
-    const newState = responseDOM.querySelector("form button");
+    const newState = responseDOM.querySelector(".wishlist-counter");
 
     // Overschrijf de HTML met de nieuwe HTML
     // We gaan de nieuwe state toevoegen aan de DOM, aan de scorelijst in de ol
-    formButton.innerHTML = newState.innerHTML;
+    giftCounter.innerHTML = newState.innerHTML;
 
     // Loading state weghalen
     // Nu kan je waarschijnlijk de Loading state vervangen door een Success state
-    console.log("Loading state weghalen");
-    formButton.classList.remove("loading");
-    // formButton.textContent = "Save score";
+    // console.log("Loading state weghalen");
+    // giftCounter.classList.remove("loading");
+    // giftCounter.textContent = "Save score";
   });
 });

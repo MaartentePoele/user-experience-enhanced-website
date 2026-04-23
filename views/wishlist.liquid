@@ -9,7 +9,7 @@
   {% for likedProduct in likedProducts reversed %}
     {% assign product = likedProduct.milledoni_products_id %}
     <article class="gift">
-      <form method="post" action="/">
+      <form method="post" action="/delete">
         {% include 'partials/saved-button.liquid' %}
       </form>
       <a href="/gift/{{ product.slug }}">

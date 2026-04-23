@@ -282,11 +282,10 @@ header {
   transition: 0.3s;
 }
 
-/* .gift:hover {
-  @media (prefers-reduced-motion: no-preference) {
-    scale: 1.025;
-  }
-} */
+form {
+  display: grid;
+  place-items: center;
+}
 
 .save-button {
   background-color: var(--white);
@@ -423,5 +422,29 @@ footer {
 
   .scroll-button {
     fill: white;
+  }
+}
+
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 3px solid black;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin: 0.5rem 0.5rem 0 0;
+
+  img {
+    display: none;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -27,13 +27,15 @@
   {% for product in products %}
     {% if product.amount != '0.00' %}
       <article class="gift">
-        <form method="post" action="/">
-          {% if likedGifts contains product.id %}
+        {% if likedGifts contains product.id %}
+          <form method="post" action="/delete">
             {% include 'partials/saved-button.liquid' %}
+          </form>
           {% else %}
+          <form method="post" action="/">
             {% include 'partials/save-button.liquid' %}
+          </form>
           {% endif %}
-        </form>
         <a href="/gift/{{ product.slug }}">
           <img class="product-image" src="{{ product.image }}" alt="product image" width="422" height="422">
           <h3 class="product-name">{{ product.name }}</h3>

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milledoni - Find the Perfect Gift</title>
     <link rel="stylesheet" href="/assets/styles/style.css">
-    <script src="/assets/scripts/script.js" defer></script>
+    {% comment %} <script src="/assets/scripts/script.js" defer></script> {% endcomment %}
+    <script src="/assets/scripts/counter.js" defer></script>
   </head>
 
   <body>
@@ -16,7 +17,9 @@
       <ul class="header-list">
         <li class="header-list-item">
           <a class="header-list-item-link" href="/wishlist"><img class="wishlist" src="/assets/images/wishlist-icon.svg" alt="" width="28" height="25">
-            <span class="wishlist-counter">{{ wishlistCount }}</span>
+            {% if wishlistCount != 0 %}
+              <span class="wishlist-counter">{{ wishlistCount }}</span>
+            {% endif %}
           </a>
         </li>
         <li class="header-list-item"><a class="header-list-item-link" href="/account"><img class="account" src="/assets/images/account-icon.svg" alt="" width="31" height="30"></a></li>
