@@ -54,7 +54,6 @@ a:hover {
 header {
   display: flex;
   padding: 0 0.5rem;
-  
 }
 
 .header-list {
@@ -412,7 +411,7 @@ footer {
 .scroll-button-link {
   background-color: var(--accent-color);
   position: fixed;
-  width: 60px;
+  width: 40px;
   padding: 0.25rem;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -420,6 +419,10 @@ footer {
   right: 25px;
   display: grid;
   place-items: center;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
 
   .scroll-button {
     fill: white;
