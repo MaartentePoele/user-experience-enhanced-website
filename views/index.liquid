@@ -16,9 +16,13 @@
 
 <aside class="chatbot">
   <div class="input-container">
-    <button class="mic-button"><img class="chatbot-icon" src="/assets/images/mic-icon.svg" alt="" width="20" height="27"></button>
+    <button class="mic-button">
+      <img class="chatbot-icon" src="/assets/images/mic-icon.svg" alt="" width="20" height="27">
+    </button>
     <input class="chatbot-input" type="text" placeholder="Type your message...">
-    <button class="search-button"><img class="chatbot-icon" src="/assets/images/search-icon.svg" alt="" width="47" height="47"></button>
+    <button class="search-button">
+      <img class="chatbot-icon" src="/assets/images/search-icon.svg" alt="" width="47" height="47">
+    </button>
   </div>
 </aside>
 
@@ -29,13 +33,15 @@
       <article class="gift">
         {% if likedGifts contains product.id %}
           <form method="post" action="/delete">
+            <input type="hidden" name="id" value="{{ product.id }}">
             {% include 'partials/saved-button.liquid' %}
           </form>
-          {% else %}
+        {% else %}
           <form method="post" action="/">
+            <input type="hidden" name="id" value="{{ product.id }}">
             {% include 'partials/save-button.liquid' %}
           </form>
-          {% endif %}
+        {% endif %}
         <a href="/gift/{{ product.slug }}">
           <img class="product-image" src="{{ product.image }}" alt="product image" width="422" height="422">
           <h3 class="product-name">{{ product.name }}</h3>

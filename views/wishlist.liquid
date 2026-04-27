@@ -10,6 +10,7 @@
     {% assign product = likedProduct.milledoni_products_id %}
     <article class="gift">
       <form method="post" action="/delete">
+        <input type="hidden" name="id" value="{{ product.id }}">
         {% include 'partials/saved-button.liquid' %}
       </form>
       <a href="/gift/{{ product.slug }}">
