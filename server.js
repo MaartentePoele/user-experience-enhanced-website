@@ -10,7 +10,7 @@ app.set("views", "./views");
 
 app.get("/", async function (req, res) {
   const params = {
-    fields: "name,image,amount,slug,id",
+    fields: "name,image,amount,slug,id,img,img.height,img.width,img.id",
   };
 
   if (req.query.price) {

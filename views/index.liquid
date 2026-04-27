@@ -17,11 +17,11 @@
 <aside class="chatbot">
   <div class="input-container">
     <button class="mic-button">
-      <img class="chatbot-icon" src="/assets/images/mic-icon.svg" alt="" width="20" height="27">
+      <img class="chatbot-icon" src="/assets/images/mic-icon.svg" alt="mic icon" width="20" height="27">
     </button>
     <input class="chatbot-input" type="text" placeholder="Type your message...">
     <button class="search-button">
-      <img class="chatbot-icon" src="/assets/images/search-icon.svg" alt="" width="47" height="47">
+      <img class="chatbot-icon" src="/assets/images/search-icon.svg" alt="search icon" width="47" height="47">
     </button>
   </div>
 </aside>
@@ -43,7 +43,11 @@
           </form>
         {% endif %}
         <a href="/gift/{{ product.slug }}">
-          <img class="product-image" src="{{ product.image }}" alt="product image" width="422" height="422">
+          <picture>
+            <source srcset="https://fdnd-agency.directus.app/assets/{{ product.img.id }}?format=avif" type="image/avif">
+            <source srcset="https://fdnd-agency.directus.app/assets/{{ product.img.id }}?format=webp" type="image/webp">
+            <img class="product-image" src="https://fdnd-agency.directus.app/assets/{{ product.img.id }}?format=jpg" alt="{{ product.name }}" width="{{ product.img.width }}" height="{{ product.img.height }}">
+          </picture>  
           <h3 class="product-name">{{ product.name }}</h3>
           <p class="product-price">€{{ product.amount }}</p>
         </a>
