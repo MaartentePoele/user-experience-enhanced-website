@@ -11,10 +11,17 @@ app.set("views", "./views");
 app.get("/", async function (req, res) {
   const params = {
     fields: "name,image,amount,slug,id,img,img.height,img.width,img.id",
+    "filter[amount][_neq]": "0.00",
   };
 
   if (req.query.price) {
     params["filter[amount][_between]"] = "0," + req.query.price;
+  }
+
+  if (req.query.sort == "price:asc") {
+    params["sort"] = "amount";
+  } else if (req.query.sort == "price:desc") {
+    params["sort"] = "-amount";
   } else {
     params["sort"] = "id";
   }

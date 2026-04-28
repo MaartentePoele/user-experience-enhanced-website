@@ -26,8 +26,17 @@
   </div>
 </aside>
 
-<section class="gifts-overview">
+<header class="gifts-overview-container">
   <h2 class="gifts-overview-header">Duizenden cadeau-ideeën, geselecteerd door onze cadeauspotters</h2>
+  <img class="filter" src="assets/images/filter.svg" alt="filter">
+  <div class="target visually-hidden">
+    <h3>Sort price</h3>
+    <a href="/?sort=price:asc">Ascending</a>
+    <a href="/?sort=price:desc">Descending</a>
+  </div>
+</header>
+
+<section class="gifts-overview">
   {% for product in products %}
     {% if product.amount != '0.00' %}
       <article class="gift">

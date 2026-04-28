@@ -1,5 +1,11 @@
 const giftForms = document.querySelectorAll("form");
-const giftCounter = document.querySelector(".wishlist-counter")
+const giftCounter = document.querySelector(".wishlist-counter");
+const filter = document.querySelector(".filter");
+const target = document.querySelector(".target");
+
+filter.addEventListener("click", function () {
+  target.classList.toggle("visually-hidden");
+});
 
 giftForms.forEach((giftForm) => {
   giftForm.addEventListener("submit", async function (event) {
