@@ -30,6 +30,7 @@ app.get("/", async function (req, res) {
     "https://fdnd-agency.directus.app/items/milledoni_products/?" +
       new URLSearchParams(params),
   );
+  console.log(productResponse)
   const productResponseJSON = await productResponse.json();
 
   const userResponse = await fetch(
