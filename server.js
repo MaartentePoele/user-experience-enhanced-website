@@ -22,6 +22,12 @@ app.get("/", async function (req, res) {
     params["sort"] = "amount";
   } else if (req.query.sort == "price:desc") {
     params["sort"] = "-amount";
+  } else if (req.query.sort == "price=5") {
+    params["filter[amount][_between]"] = "0," + 5;
+  } else if (req.query.sort == "price=10") {
+    params["filter[amount][_between]"] = "0," + 10;
+  } else if (req.query.sort == "price=20") {
+    params["filter[amount][_between]"] = "0," + 20;
   } else {
     params["sort"] = "id";
   }
@@ -30,7 +36,7 @@ app.get("/", async function (req, res) {
     "https://fdnd-agency.directus.app/items/milledoni_products/?" +
       new URLSearchParams(params),
   );
-  console.log(productResponse)
+
   const productResponseJSON = await productResponse.json();
 
   const userResponse = await fetch(
@@ -53,7 +59,6 @@ app.get("/", async function (req, res) {
 app.get("/gifts/:tags", async function (req, res) {
   const params = {
     fields: "name,image,amount,slug,id",
-    // "filter[tags][_contains]": req.params.tags,
   };
 
   const productResponse = await fetch(
@@ -163,7 +168,7 @@ app.post("/delete", async function (request, response) {
   const giftIDjson = await giftIDresponse.json();
   const giftID = giftIDjson.data[0].id;
 
-  const deleteResponse = await fetch(
+  await fetch(
     "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1/" +
       giftID,
     {

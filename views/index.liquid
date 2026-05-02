@@ -30,15 +30,21 @@
   <h2 class="gifts-overview-header">Duizenden cadeau-ideeën, geselecteerd door onze cadeauspotters</h2>
   <img class="filter" src="assets/images/filter.svg" alt="filter">
   <div class="target visually-hidden">
-    <h3>Sort price</h3>
-    <a href="/?sort=price:asc">Ascending</a>
-    <a href="/?sort=price:desc">Descending</a>
+    <h3>Customize filters</h3>
+    <div class="filters">
+      <h4>Price range</h4>
+      <a href="/?price=5">Cadeaus van 5 euro</a>
+      <a href="/?price=10">Cadeaus van 10 euro</a>
+      <a href="/?price=20">Cadeaus van 20 euro</a>
+      <h4>Order by</h4>
+      <a href="/?sort=price:asc">From cheap to expensive</a>
+      <a href="/?sort=price:desc">From expensive to cheap</a>
+    </div>
   </div>
 </header>
 
 <section class="gifts-overview">
   {% for product in products %}
-    {% if product.amount != '0.00' %}
       <article class="gift">
         {% if likedGifts contains product.id %}
           <form method="post" action="/delete">
@@ -77,7 +83,6 @@
           <p class="product-price">€{{ product.amount }}</p>
         </a>
       </article>
-    {% endif %}
   {% endfor %}
 </section>
 
