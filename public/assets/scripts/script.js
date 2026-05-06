@@ -32,5 +32,10 @@ giftForms.forEach((giftForm) => {
     giftCounter.innerHTML = counterNewState.innerHTML;
 
     formButton.classList.remove("loading");
+    giftCounter.classList.add("highlight");
+
+    giftCounter.addEventListener("animationend", function () {
+      giftCounter.classList.remove("highlight");
+    });
   });
 });
