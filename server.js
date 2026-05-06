@@ -8,44 +8,52 @@ const engine = new Liquid();
 app.engine("liquid", engine.express());
 app.set("views", "./views");
 
+const id = 58;
+const productsBaseURL =
+  "https://fdnd-agency.directus.app/items/milledoni_products";
+const usersBaseURL = "https://fdnd-agency.directus.app/items/milledoni_users";
+const likedProductsBaseURL =
+  "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1";
+
 app.get("/", async function (req, res) {
   const params = {
     fields: "name,image,amount,slug,id,img,img.height,img.width,img.id",
     "filter[amount][_neq]": "0.00",
   };
 
-  if (req.query.price) {
-    params["filter[amount][_between]"] = "0," + req.query.price;
+  const price = req.query.price;
+  const sort = req.query.sort;
+
+  if (price) {
+    params["filter[amount][_between]"] = "0," + price;
   }
 
-  if (req.query.sort == "price:asc") {
+  if (sort == "price:asc") {
     params["sort"] = "amount";
-  } else if (req.query.sort == "price:desc") {
+  } else if (sort == "price:desc") {
     params["sort"] = "-amount";
-  } else if (req.query.sort == "price=5") {
+  } else if (sort == "price=5") {
     params["filter[amount][_between]"] = "0," + 5;
-  } else if (req.query.sort == "price=10") {
+  } else if (sort == "price=10") {
     params["filter[amount][_between]"] = "0," + 10;
-  } else if (req.query.sort == "price=20") {
+  } else if (sort == "price=20") {
     params["filter[amount][_between]"] = "0," + 20;
   } else {
     params["sort"] = "id";
   }
 
   const productResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_products/?" +
-      new URLSearchParams(params),
+    `${productsBaseURL}/?` + new URLSearchParams(params),
   );
 
   const productResponseJSON = await productResponse.json();
 
-  const userResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users/58/?fields=*.*",
-  );
+  const userResponse = await fetch(`${usersBaseURL}/${id}/?fields=*.*`);
   const userData = await userResponse.json();
   const likedGifts = userData.data.liked_products.map(
     (item) => item.milledoni_products_id,
   );
+
   const wishlistCount = likedGifts.length;
 
   res.render("index.liquid", {
@@ -62,14 +70,11 @@ app.get("/gifts/:tags", async function (req, res) {
   };
 
   const productResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_products/?" +
-      new URLSearchParams(params),
+    `${productsBaseURL}/?` + new URLSearchParams(params),
   );
   const productResponseJSON = await productResponse.json();
 
-  const userResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users/58/?fields=*.*",
-  );
+  const userResponse = await fetch(`${usersBaseURL}/${id}/?fields=*.*`);
   const userData = await userResponse.json();
   const likedGifts = userData.data.liked_products.map(
     (item) => item.milledoni_products_id,
@@ -89,14 +94,11 @@ app.get("/gift/:slug", async function (req, res) {
   };
 
   const productResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_products/?" +
-      new URLSearchParams(params),
+    `${productsBaseURL}/?` + new URLSearchParams(params),
   );
   const productResponseJSON = await productResponse.json();
 
-  const userResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users/58/?fields=*.*",
-  );
+  const userResponse = await fetch(`${usersBaseURL}/${id}/?fields=*.*`);
   const userData = await userResponse.json();
   const likedGifts = userData.data.liked_products.map(
     (item) => item.milledoni_products_id,
@@ -120,14 +122,11 @@ app.get("/wishlist", async function (req, res) {
   };
 
   const productResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users/58/?" +
-      new URLSearchParams(params),
+    `${usersBaseURL}/${id}/?` + new URLSearchParams(params),
   );
   const productResponseJSON = await productResponse.json();
 
-  const userResponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users/58/?fields=*.*",
-  );
+  const userResponse = await fetch(`${usersBaseURL}/${id}/?fields=*.*`);
   const userData = await userResponse.json();
   const likedGifts = userData.data.liked_products.map(
     (item) => item.milledoni_products_id,
@@ -142,39 +141,32 @@ app.get("/wishlist", async function (req, res) {
 });
 
 app.post("/", async function (request, response) {
-  await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        milledoni_users_id: 58,
-        milledoni_products_id: request.body.id,
-      }),
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-      },
+  await fetch(`${likedProductsBaseURL}`, {
+    method: "POST",
+    body: JSON.stringify({
+      milledoni_users_id: 58,
+      milledoni_products_id: request.body.id,
+    }),
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
     },
-  );
+  });
 
   response.redirect(303, request.header("Referer") || "/");
 });
 
 app.post("/delete", async function (request, response) {
   const giftIDresponse = await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1?filter[milledoni_users_id][_eq]=58&filter[milledoni_products_id][_eq]=" +
+    `${likedProductsBaseURL}?filter[milledoni_users_id][_eq]=58&filter[milledoni_products_id][_eq]=` +
       request.body.id,
   );
 
   const giftIDjson = await giftIDresponse.json();
   const giftID = giftIDjson.data[0].id;
 
-  await fetch(
-    "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1/" +
-      giftID,
-    {
-      method: "DELETE",
-    },
-  );
+  await fetch(`${likedProductsBaseURL}/` + giftID, {
+    method: "DELETE",
+  });
 
   response.redirect(303, request.header("Referer") || "/");
 });

@@ -60,6 +60,13 @@ header {
   padding: 0 0.5rem;
 }
 
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--primary-background-color);
+}
+
 .header-list {
   list-style: none;
   display: flex;
@@ -283,7 +290,6 @@ header {
     background-color: #1a1a1a;
     display: flex;
     flex-direction: column;
-    /* padding: 1rem; */
     z-index: 10;
     margin: 1rem;
 
