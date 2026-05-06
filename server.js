@@ -53,7 +53,6 @@ app.get("/", async function (req, res) {
   const likedGifts = userData.data.liked_products.map(
     (item) => item.milledoni_products_id,
   );
-
   const wishlistCount = likedGifts.length;
 
   res.render("index.liquid", {
@@ -112,13 +111,15 @@ app.get("/gift/:slug", async function (req, res) {
 });
 
 app.get("/wishlist", async function (req, res) {
+  const baseField = "liked_products.milledoni_products_id";
+
   const params = {
     fields:
-      "liked_products.milledoni_products_id.slug," +
-      "liked_products.milledoni_products_id.image," +
-      "liked_products.milledoni_products_id.name," +
-      "liked_products.milledoni_products_id.amount," +
-      "liked_products.milledoni_products_id.id",
+      `${baseField}.slug,` +
+      `${baseField}.image,` +
+      `${baseField}.name,` +
+      `${baseField}.amount,` +
+      `${baseField}.id`,
   };
 
   const productResponse = await fetch(
