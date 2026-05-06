@@ -25,7 +25,7 @@ Check [hier](https://the-web-is-for-everyone-interactive-3mf1.onrender.com/) de 
 User story: Als gebruiker wil ik cadeaus kunnen toevoegen aan mijn verlanglijstje, zodat ik mijn cadeaus kan bewaren en later makkelijk terugvinden.
 
 Je kan met de button op elk cadeautje het cadeau toevoegen aan je verlanglijstje.
-<img width="1406" height="874" alt="Group 689" src="https://github.com/user-attachments/assets/53515f45-4066-47fc-a6b8-df621a85ae33" />
+<img width="1908" height="874" alt="Group 689" src="https://github.com/user-attachments/assets/1b66f751-ef70-4f42-99ff-573384401423" />
 
 ## Kenmerken
 <!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framwork of library gebruikt? -->
