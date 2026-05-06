@@ -18,7 +18,7 @@ Een website om cadeau-ideeën op te doen.
 <!-- Voeg een link toe naar je live site 🌐-->
 Check [hier](https://user-experience-enhanced-website-1v6i.onrender.com/) de website.
 
-<img width="500" height="1083" alt="image" src="https://github.com/user-attachments/assets/c57c9a16-9092-44b0-9762-e595c40ff836" />
+<img width="500" height="1083" alt="image" src="https://github.com/user-attachments/assets/c333ad9e-5f96-42f3-a896-230198ce445e" />
 
 ## Gebruik
 <!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
