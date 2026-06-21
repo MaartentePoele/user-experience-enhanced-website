@@ -31,6 +31,7 @@ Je kan met de button op elk cadeautje het cadeau toevoegen aan je verlanglijstje
 <!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framwork of library gebruikt? -->
 ### User experience
 Hieronder is de post interactie te zien met een loading state en success state.
+
 https://github.com/user-attachments/assets/897087fc-5bfd-4e4e-89ac-3b79f77efe96
 
 De pagina herlaadt nu niet meer als je een cadeau opslaat. Dit is gedaan met client side scripting.
